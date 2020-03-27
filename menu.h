@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -13,7 +14,9 @@ public:
 };
 
 void menu::mainMenu() {
-    
+    cout << "---------------------------" << endl;
+    cout << " LIBRARY MANAGEMENT SYSTEM" << endl;
+    cout << "---------------------------" << endl;
 }
 
 void menu::adminMenu() {
