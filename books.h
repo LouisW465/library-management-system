@@ -16,8 +16,8 @@ protected:
     void bookDelete();
 
 public:
-    void bookLoan();
-    void bookReturn();
+    void bookLoan(string usr);
+    void bookReturn(string usr);
     void bookView();
 };
 
@@ -28,10 +28,28 @@ void books::bookView() {
     Json::Value root;
     reader.parse(bookFile, root);
 
+    printf("\033c");  
     //Loops through JSON data and prints the elements title and author for each book
     for (int i = 0; i < root["books"].size(); i++) {
         string title = root["books"][i]["title"].asString();
         string author = root["books"][i]["author"].asString();
-        cout << "TITLE: " << title << "\n" << "AUTHOR: " << author << "\n\n";
+        string quantity = root["books"][i]["quantity"].asString();
+        cout << "TITLE: " << title << "\n" << "AUTHOR: " << author << "\n" << "QUANTITY: " << quantity << "\n\n";
     }
+}
+
+void books::bookLoan(string usr) {
+    bookView();
+}
+
+void books::bookReturn(string usr) {
+    bookView();
+}
+
+void books::bookAdd() {
+    
+}
+
+void books::bookDelete() {
+    
 }

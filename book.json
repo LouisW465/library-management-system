@@ -1,7 +1,7 @@
 {"books":[
-    { "title":"Mr. Mercedes", "author":"Stephen King", "bookNo": 1 },
-    { "title":"Moby Dick", "author":"Herman Melville", "bookNo": 2 },
-    { "title":"Dracula", "author":"Bram Stoker", "bookNo": 3 },
-    { "title":"Green Mile", "author":"Stephen King", "bookNo": 4 },
-    { "title":"Crime and punishment", "author":"Fyodor Dostoevsky", "bookNo": 5 }
+    { "title":"Mr. Mercedes", "author":"Stephen King", "bookNo": 1, "quantity": 2 },
+    { "title":"Moby Dick", "author":"Herman Melville", "bookNo": 2, "quantity": 5 },
+    { "title":"Dracula", "author":"Bram Stoker", "bookNo": 3, "quantity": 12 },
+    { "title":"Green Mile", "author":"Stephen King", "bookNo": 4, "quantity": 10 },
+    { "title":"Crime and punishment", "author":"Fyodor Dostoevsky", "bookNo": 5, "quantity": 4 }
 ]}
