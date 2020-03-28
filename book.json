@@ -1,0 +1,7 @@
+{"books":[
+    { "title":"Mr. Mercedes", "author":"Stephen King", "bookNo": 1 },
+    { "title":"Moby Dick", "author":"Herman Melville", "bookNo": 2 },
+    { "title":"Dracula", "author":"Bram Stoker", "bookNo": 3 },
+    { "title":"Green Mile", "author":"Stephen King", "bookNo": 4 },
+    { "title":"Crime and punishment", "author":"Fyodor Dostoevsky", "bookNo": 5 }
+]}

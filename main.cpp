@@ -59,7 +59,7 @@ int main() {
             correctPswd = root["accounts"][i]["password"].asString();
             isAdmin = root["accounts"][i]["isadmin"].asString();
             if (username == correctUsr && password == correctPswd && isAdmin == "true") {
-                menu m;
+                admMenu m;
                 m.adminMenu(username);
             }
         }   
