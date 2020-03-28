@@ -1,0 +1,6 @@
+{"accounts":[
+    { "username":"JohnW354", "password":"89Ghb43", "bookNo":[ ], "isadmin":"false" },
+    { "username":"AnnaF123", "password":"tH456Ls", "bookNo":[ ],"isadmin":"false" },
+    { "username":"PeterJ679", "password":"GB42HlkO", "bookNo":[ ],"isadmin":"false" },
+    { "username":"adm1Jack", "password":"pass!w0rd", "bookNo":[ ],"isadmin":"true" }    
+]}
