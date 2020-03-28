@@ -22,12 +22,13 @@ public:
 };
 
 void books::bookView() {
-
+    //same JSON parser in main.cpp but for the JSON file that stores all books that can be rented
     ifstream bookFile("book.json");
     Json::Reader reader;
     Json::Value root;
     reader.parse(bookFile, root);
 
+    //Loops through JSON data and prints the elements title and author for each book
     for (int i = 0; i < root["books"].size(); i++) {
         string title = root["books"][i]["title"].asString();
         string author = root["books"][i]["author"].asString();

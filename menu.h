@@ -1,3 +1,4 @@
+#pragma once
 #include "books.h"
 
 #include <string>
@@ -16,6 +17,7 @@ public:
 };
 
 void menu::mainMenu(string usr) {
+    //Main menu for students that will allow them to call the public functions from books for loaning/returning/searching
     books b;
     string a;
     printf("\033c");  
@@ -29,6 +31,7 @@ void menu::mainMenu(string usr) {
 }
 
 void admMenu::adminMenu(string usr) {
+    //Admin panel for admin accounts, allowing them to perform all admin operations such as manipulating accounts and books
     string a;
     printf("\033c");  
     cout << "\n\t--------------------" << endl;
