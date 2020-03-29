@@ -83,7 +83,6 @@ void books::bookAdd() {
 
     printf("\033c"); 
     cout << "\nThe book has successfuly been added to the system.\n\n"; 
-
 }
 
 void books::bookDelete() {

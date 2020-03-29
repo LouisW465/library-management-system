@@ -12,15 +12,10 @@ private:
     string accountPassword;
 
 protected:
-    void accountView();
     void accountAdd();
     void accountDelete();
     void accountEdit();
 };
-
-void accounts::accountView() {
-
-}
 
 void accounts::accountAdd() {
     ifstream accountFile("account.json");
@@ -57,7 +52,37 @@ void accounts::accountAdd() {
 }
 
 void accounts::accountDelete() {
+    ifstream accountFile("account.json");
+    Json::Value val;
+    Json::Value newVal;
+    Json::Reader reader;
+    reader.parse(accountFile, val);
+    string del;
+    int skip;
     
+    cout << "\nPlease enter the username of the account you would like to delete: \n";
+    cin >> del;
+    
+    
+    for (int i = 0; i < val.size(); ++i) {
+        string a = val["accounts"][i]["username"].asString();
+        if (del == a) {
+            skip = i;
+            break;
+        }
+    }
+    cout << skip;
+
+    for (int j = 0; j < val.size(); ++j) {
+        if (j != skip) {
+            newVal["accounts"][j] = val["accounts"][j];
+        }
+    }
+    
+    cout << newVal;
+    //for loop that loops through val until it finds element with account to delete,
+    //then saves that index
+    //then another loop stores val into newVal but skips over element at the index saved
 }
 
 void accounts::accountEdit() {
