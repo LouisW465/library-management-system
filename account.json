@@ -1,7 +1,34 @@
-{"accounts":[
-    { "username":"1", "password":"1", "bookNo":[], "isadmin":"false" },
-    { "username":"JohnW354", "password":"89Ghb43", "bookNo":[], "isadmin":"false" },
-    { "username":"AnnaF123", "password":"tH456Ls", "bookNo":[],"isadmin":"false" },
-    { "username":"PeterJ679", "password":"GB42HlkO", "bookNo":[],"isadmin":"false" },
-    { "username":"adm1Jack", "password":"pass!w0rd", "bookNo":[],"isadmin":"true" }    
-]}
+{
+   "accounts" : [
+      {
+         "bookNo" : [],
+         "isadmin" : "true",
+         "password" : "1",
+         "username" : "1"
+      },
+      {
+         "bookNo" : [],
+         "isadmin" : "false",
+         "password" : "89Ghb43",
+         "username" : "JohnW354"
+      },
+      {
+         "bookNo" : [],
+         "isadmin" : "false",
+         "password" : "tH456Ls",
+         "username" : "AnnaF123"
+      },
+      {
+         "bookNo" : [],
+         "isadmin" : "false",
+         "password" : "GB42HlkO",
+         "username" : "PeterJ679"
+      },
+      {
+         "bookNo" : [],
+         "isadmin" : "true",
+         "password" : "pass!w0rd",
+         "username" : "adm1Jack"
+      }
+   ]
+}
