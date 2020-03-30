@@ -14,21 +14,21 @@
       },
       {
          "bookNo" : [],
+         "isadmin" : "true",
+         "password" : "pass!w0rd",
+         "username" : "adm1Jack"
+      },
+      {
+         "bookNo" : [],
          "isadmin" : "false",
-         "password" : "tH456Ls",
+         "password" : "pass43g",
          "username" : "AnnaF123"
       },
       {
          "bookNo" : [],
          "isadmin" : "false",
-         "password" : "GB42HlkO",
-         "username" : "PeterJ679"
-      },
-      {
-         "bookNo" : [],
-         "isadmin" : "true",
-         "password" : "pass!w0rd",
-         "username" : "adm1Jack"
+         "password" : "gft4589",
+         "username" : "Peter43"
       }
    ]
 }

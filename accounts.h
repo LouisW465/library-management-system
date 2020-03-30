@@ -57,32 +57,57 @@ void accounts::accountDelete() {
     Json::Value newVal;
     Json::Reader reader;
     reader.parse(accountFile, val);
-    string del;
-    int skip;
-    
+    accountFile.close();
+
+    string del, line;
+    int skip = 4;
+
+    printf("\033c"); 
     cout << "\nPlease enter the username of the account you would like to delete: \n";
     cin >> del;
     
-    
-    for (int i = 0; i < val.size(); ++i) {
+    for (int i = 0; i < val["accounts"].size(); ++i) {
         string a = val["accounts"][i]["username"].asString();
         if (del == a) {
             skip = i;
             break;
         }
     }
-    cout << skip;
-
-    for (int j = 0; j < val.size(); ++j) {
+    for (int j = 0; j < val["accounts"].size(); ++j) {
         if (j != skip) {
             newVal["accounts"][j] = val["accounts"][j];
-        }
+        } 
     }
     
-    cout << newVal;
-    //for loop that loops through val until it finds element with account to delete,
-    //then saves that index
-    //then another loop stores val into newVal but skips over element at the index saved
+    ofstream writeFile("account.json");
+    Json::StyledWriter writer;
+    writeFile << writer.write(newVal);
+    writeFile.close();
+    
+    string n = "null";
+    ifstream readFile("account.json");
+    ofstream delNull("temp.json");
+    while (getline(readFile, line)) {
+        if (line.find(n) != string::npos) {
+            continue;
+        }
+        delNull << line << endl;
+    }
+
+    readFile.close();
+    delNull.close();
+    
+    ifstream temp("temp.json");
+    ofstream temp2("account.json");
+
+    while (getline(temp, line))
+    {
+       temp2 << line << endl;
+    }
+    
+    temp.close();
+    temp2.close();
+    remove("temp.json");
 }
 
 void accounts::accountEdit() {
