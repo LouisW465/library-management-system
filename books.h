@@ -14,6 +14,7 @@ private:
 protected:
     void bookAdd();
     void bookDelete();
+    void bookEdit();
 
 public:
     void bookLoan(string usr);
@@ -27,7 +28,7 @@ void books::bookView() {
     Json::Reader reader;
     Json::Value root;
     reader.parse(bookFile, root);
-
+    bookFile.close();
     printf("\033c");  
     //Loops through JSON data and prints the elements title and author for each book
     for (int i = 0; i < root["books"].size(); i++) {
@@ -86,5 +87,64 @@ void books::bookAdd() {
 }
 
 void books::bookDelete() {
+    ifstream bookFile("book.json");
+    Json::Value val;
+    Json::Value newVal;
+    Json::Reader reader;
+    reader.parse(bookFile, val);
+    bookFile.close();
+
+    string line;
+    int skip, del;
+
+    printf("\033c"); 
+    cout << "\nPlease enter the bookNo of the book you would like to delete: \n";
+    cin >> del;
     
+    for (int i = 0; i < val["books"].size(); ++i) {
+        int a = val["books"][i]["bookNo"].asInt();
+        if (del == a) {
+            skip = i;
+            break;
+        }
+    }
+    for (int j = 0; j < val["books"].size(); ++j) {
+        if (j != skip) {
+            newVal["books"][j] = val["books"][j];
+        } 
+    }
+    
+    ofstream writeFile("book.json");
+    Json::StyledWriter writer;
+    writeFile << writer.write(newVal);
+    writeFile.close();
+    
+    string n = "null";
+    ifstream readFile("book.json");
+    ofstream delNull("temp.json");
+    while (getline(readFile, line)) {
+        if (line.find(n) != string::npos) {
+            continue;
+        }
+        delNull << line << endl;
+    }
+
+    readFile.close();
+    delNull.close();
+    
+    ifstream temp("temp.json");
+    ofstream temp2("book.json");
+
+    while (getline(temp, line))
+    {
+       temp2 << line << endl;
+    }
+    
+    temp.close();
+    temp2.close();
+    remove("temp.json");    
+}
+
+void books::bookEdit() {
+
 }
