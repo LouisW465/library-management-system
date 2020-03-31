@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <unistd.h>
 
 using namespace std;
 
@@ -34,13 +35,53 @@ void books::bookView() {
     for (int i = 0; i < root["books"].size(); i++) {
         string title = root["books"][i]["title"].asString();
         string author = root["books"][i]["author"].asString();
-        string quantity = root["books"][i]["quantity"].asString();
-        cout << "TITLE: " << title << "\n" << "AUTHOR: " << author << "\n" << "QUANTITY: " << quantity << "\n\n";
+        int quantity = root["books"][i]["quantity"].asInt();
+        if (quantity == 0) {
+            cout << "TITLE: " << title << "\n" << "AUTHOR: " << author << "\n" << "QUANTITY: " << "OUT OF STOCK" << "\n\n";
+        } else {
+            cout << "TITLE: " << title << "\n" << "AUTHOR: " << author << "\n" << "QUANTITY: " << quantity << "\n\n";
+        }
     }
 }
 
 void books::bookLoan(string usr) {
     bookView();
+    int bookNo, quantity;
+    string title;
+
+    ifstream bookFile("book.json");
+    Json::Reader reader;
+    Json::Value root;
+    reader.parse(bookFile, root);
+    bookFile.close();
+
+    cout << "\n\nPlease select the book you would like to loan(bookNo): ";
+    cin >> bookNo;
+    
+    for (int i = 0; i < root["books"].size(); i++) {
+        if (bookNo == root["books"][i]["bookNo"].asInt()) {
+            title = root["books"][i]["title"].asString();
+            quantity = root["books"][i]["quantity"].asInt();
+            if (quantity == 0) {
+                printf("\033c");  
+                cout << "ERROR: this book is out of stock, please select one that is in stock, thank you. \n";
+                usleep(1000000);
+                bookLoan(usr);
+            } 
+            break;
+        }
+    }
+    string a;
+    cout << "\nThe book you have chosen is: " << title << " Would you like to loan this book? (Y or N) "; 
+    cin >> a;
+
+    if (a == "Y" || a == "y") {
+        
+    } else if (a == "N" || a == "n")
+    {
+        bookLoan(usr);
+    }
+    
 }
 
 void books::bookReturn(string usr) {
