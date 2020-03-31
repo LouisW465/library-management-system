@@ -76,6 +76,34 @@ void books::bookLoan(string usr) {
     cin >> a;
 
     if (a == "Y" || a == "y") {
+        ifstream accountFile("account.json");
+        Json::Value val;
+        
+        Json::Value arr(Json::arrayValue);
+        Json::Reader reader;
+        reader.parse(accountFile, val);
+        accountFile.close();
+
+        for (int i = 0; val["accounts"].size(); i++) {
+            if (usr == val["accounts"][i]["username"].asString()) {
+                arr = val["accounts"][i]["bookNo"];
+                arr.append(bookNo);
+                val["accounts"][i]["bookNo"] = arr;
+                quantity -= 1;
+                ofstream writeFile("account.json");
+                Json::StyledWriter writer;
+                writeFile << writer.write(val);
+                writeFile.close();
+
+                cout << "\n The book has been loaned successfully.\n\n";
+                break;
+            }
+        }
+        
+        ifstream readUpdate("book.json");
+        reader.parse(readUpdate, val);
+        readUpdate.close();
+        cout << val["books"][bookNo - 1]["quantity"] << endl;   //NEED TO MODIFY THIS AND PUT IT BACK INTO THE FILE
         
     } else if (a == "N" || a == "n")
     {
