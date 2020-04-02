@@ -1,7 +1,7 @@
 {
    "accounts" : [
       {
-         "bookNo" : [ 3, 4 ],
+         "bookNo" : [],
          "isadmin" : "true",
          "password" : "1",
          "username" : "1"

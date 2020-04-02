@@ -121,8 +121,47 @@ void books::bookLoan(string usr) {
 }
 
 void books::bookReturn(string usr) {
-    bookView();
-    
+    ifstream accountFile("account.json");
+    Json::Value val;
+    Json::Value newBookNo(Json::arrayValue);
+    Json::Reader reader;
+    reader.parse(accountFile, val);
+    int returnNo, i;
+
+    for (i = 0; i < val["accounts"].size(); i++) {
+        if (usr == val["accounts"][i]["username"].asString()) {
+            
+            cout << val["accounts"][i]["bookNo"] << "\n\n";
+            cout << "\nPlease select the book you would like to return: " << endl;
+            cin >> returnNo;
+
+            for (int j = 0; j < val["accounts"][i]["bookNo"].size(); j++) {
+                if (returnNo == val["accounts"][i]["bookNo"][j].asInt()) {
+                    continue;
+                }
+                newBookNo.append(val["accounts"][i]["bookNo"][j]);
+            }
+            val["accounts"][i]["bookNo"] = newBookNo;
+        }
+    }
+
+    ofstream writeUpdate("account.json");
+    Json::StyledWriter writer;
+    writeUpdate << writer.write(val);
+    writeUpdate.close();
+
+    ifstream readReturn("book.json");
+    reader.parse(readReturn, val);
+    readReturn.close();
+    int newQuantity = val["books"][returnNo - 1]["quantity"].asInt() + 1;   //NEED TO MODIFY THIS AND PUT IT BACK INTO THE FILE
+    Json::Value quant = newQuantity;
+
+    val["books"][returnNo - 1]["quantity"] = quant;
+
+    ofstream writeReturn("book.json");
+    writeReturn << writer.write(val);
+    writeReturn.close();    
+
 }
 
 void books::bookAdd() {

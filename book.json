@@ -15,13 +15,13 @@
       {
          "author" : "Bram Stoker",
          "bookNo" : 3,
-         "quantity" : 11,
+         "quantity" : 12,
          "title" : "Dracula"
       },
       {
          "author" : "Stephen King",
          "bookNo" : 4,
-         "quantity" : 9,
+         "quantity" : 10,
          "title" : "Green Mile"
       },
       {
