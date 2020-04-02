@@ -135,7 +135,11 @@ void books::bookReturn(string usr) {
             cout << val["accounts"][i]["bookNo"] << "\n\n";
             cout << "\nPlease select the book you would like to return: " << endl;
             cin >> returnNo;
-
+            if (returnNo != val["accounts"][i]["bookNo"][0].asInt()) {
+                printf("ERROR book has not been loaned");
+                printf("\033c"); 
+                bookReturn(usr);
+            }
             for (int j = 0; j < val["accounts"][i]["bookNo"].size(); j++) {
                 if (returnNo == val["accounts"][i]["bookNo"][j].asInt()) {
                     continue;
@@ -163,6 +167,7 @@ void books::bookReturn(string usr) {
     writeReturn << writer.write(val);
     writeReturn.close();    
 
+    printf("\033c"); 
     cout << "\n\nThe book has been returned successfully.\n";
 }
 

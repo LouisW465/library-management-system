@@ -74,4 +74,15 @@ int main() {
         usleep(1000000);
         main();
     }
+
+    if (a == "Student" || a == "student") {
+        printf("\033c");
+        menu m;
+        m.mainMenu(username);
+    } else if (a == "Admin" || a == "admin") {
+        printf("\033c");
+        admMenu am;
+        am.adminMenu(username);
+    }
+
 }

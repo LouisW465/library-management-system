@@ -9,13 +9,13 @@
       {
          "author" : "Herman Melville",
          "bookNo" : 2,
-         "quantity" : 5,
+         "quantity" : 11,
          "title" : "Moby Dick"
       },
       {
          "author" : "Bram Stoker",
          "bookNo" : 3,
-         "quantity" : 12,
+         "quantity" : 13,
          "title" : "Dracula"
       },
       {
