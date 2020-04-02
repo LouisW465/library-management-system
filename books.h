@@ -15,7 +15,6 @@ private:
 protected:
     void bookAdd();
     void bookDelete();
-    void bookEdit();
 
 public:
     void bookLoan(string usr);
@@ -71,6 +70,7 @@ void books::bookLoan(string usr) {
             break;
         }
     }
+
     string a;
     cout << "\nThe book you have chosen is: " << title << " Would you like to loan this book? (Y or N) "; 
     cin >> a;
@@ -118,6 +118,7 @@ void books::bookLoan(string usr) {
         bookLoan(usr);
     }
     
+    cout << "\n\nThe book has been loaned successfully.\n";
 }
 
 void books::bookReturn(string usr) {
@@ -162,6 +163,7 @@ void books::bookReturn(string usr) {
     writeReturn << writer.write(val);
     writeReturn.close();    
 
+    cout << "\n\nThe book has been returned successfully.\n";
 }
 
 void books::bookAdd() {
@@ -260,8 +262,6 @@ void books::bookDelete() {
     temp.close();
     temp2.close();
     remove("temp.json");    
-}
 
-void books::bookEdit() {
-
+    cout << "\n\nThe book has been deleted successfully.\n";
 }

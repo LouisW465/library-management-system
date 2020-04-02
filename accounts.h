@@ -108,8 +108,54 @@ void accounts::accountDelete() {
     temp.close();
     temp2.close();
     remove("temp.json");
+
+    cout << "\n\nThe account has been deleted successfully.\n";
 }
 
 void accounts::accountEdit() {
-    
+    ifstream accountFile("account.json");
+    Json::Value val, usr, pass;
+    Json::Reader reader;
+    reader.parse(accountFile, val);
+    accountFile.close();
+    string edit;
+    printf("\033c"); 
+    cout << "\nPlease enter the username of the account you would like to delete: \n";
+    cin >> edit;
+
+    for (int i = 0; i < val["accounts"].size(); ++i) {
+        if (edit == val["accounts"][i]["username"].asString()){
+            int a;
+            cout << "would you like to edit the username(1) or the password(2) for this account: ";
+            cin >> a;
+            if (a == 1) {
+                string newUsr;
+                cout << "Please enter the new username for this account: ";
+                cin >> newUsr;
+                usr = newUsr;
+                val["accounts"][i]["username"] = usr;
+                break;
+            } else if (a == 2) {
+                string newPass;
+                cout << "Please enter the new password for this account: ";
+                cin >> newPass;
+                pass = newPass;
+                val["accounts"][i]["password"] = pass;
+                break;
+            } else {
+                printf("\033c");  
+                cout << "ERROR: Incorrect input, please try again\n";
+                usleep(1000000);
+                printf("\033c"); 
+                i = 0;
+                continue;
+            }
+        }
+    }
+    ofstream writeEdit("account.json");
+    Json::StyledWriter writer;
+    writeEdit << writer.write(val);
+    writeEdit.close();
+
+    cout << "\n\nDetails have been updated successfully.\n";
 }
