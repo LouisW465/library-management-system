@@ -46,8 +46,8 @@ void books::bookView() {
 
 void books::bookLoan(string usr) {
     bookView();
-    int bookNo, quantity;
-    string title;
+    int bookNo = 0, quantity = 0;
+    string title = "";
 
     ifstream bookFile("book.json");
     Json::Reader reader;
@@ -57,7 +57,7 @@ void books::bookLoan(string usr) {
 
     cout << "\n\nPlease select the book you would like to loan(bookNo): ";
     cin >> bookNo;
-    
+
     for (int i = 0; i < root["books"].size(); i++) {
         if (bookNo == root["books"][i]["bookNo"].asInt()) {
             title = root["books"][i]["title"].asString();
@@ -67,7 +67,7 @@ void books::bookLoan(string usr) {
                 cout << "ERROR: this book is out of stock, please select one that is in stock, thank you. \n";
                 usleep(1000000);
                 bookLoan(usr);
-            } 
+            }
             break;
         }
     }
@@ -103,8 +103,16 @@ void books::bookLoan(string usr) {
         ifstream readUpdate("book.json");
         reader.parse(readUpdate, val);
         readUpdate.close();
-        cout << val["books"][bookNo - 1]["quantity"] << endl;   //NEED TO MODIFY THIS AND PUT IT BACK INTO THE FILE
-        
+        int newQuantity = val["books"][bookNo - 1]["quantity"].asInt() - 1;   //NEED TO MODIFY THIS AND PUT IT BACK INTO THE FILE
+        Json::Value quant = newQuantity;
+
+        val["books"][bookNo - 1]["quantity"] = quant;
+
+        ofstream writeUpdate("book.json");
+        Json::StyledWriter writer;
+        writeUpdate << writer.write(val);
+        writeUpdate.close();    
+
     } else if (a == "N" || a == "n")
     {
         bookLoan(usr);
@@ -114,6 +122,7 @@ void books::bookLoan(string usr) {
 
 void books::bookReturn(string usr) {
     bookView();
+    
 }
 
 void books::bookAdd() {
